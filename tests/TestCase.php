@@ -18,6 +18,11 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
+        $this->app['view']->prependNamespace(
+            'pulse',
+            dirname(__DIR__) . '/workbench/resources/views/vendor/pulse',
+        );
+
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Kodamity\\Libraries\\ApiUsagePulse\\Database\\Factories\\' . class_basename($modelName) . 'Factory',
         );
@@ -25,6 +30,7 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
+        $app['config']->set('app.key', 'base64:'.base64_encode(str_repeat('x', 32)));
         $app['config']->set('database.default', 'testbench');
         $app['config']->set('database.connections.testbench', [
             'driver' => 'sqlite',
