@@ -75,7 +75,6 @@
     },
     "scripts": {
         "post-autoload-dump": [
-            "@clear",
             "@prepare"
         ],
         "analyse": "vendor/bin/phpstan analyse",
