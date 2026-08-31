@@ -12,6 +12,16 @@ on:
       - '.github/workflows/static-analysis.yml'
 
   pull_request:
+    paths:
+      - '**.php'
+      - 'phpstan.neon.dist'
+      - 'composer.json'
+      - 'composer.lock'
+      - '.github/workflows/static-analysis.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -20,4 +30,4 @@ jobs:
   static-analysis:
     uses: kodamity/.github/.github/workflows/static-analysis.yml@main
     with:
-      php-version: '["8.3", "8.4"]'
+      php-version: '["8.3"]'

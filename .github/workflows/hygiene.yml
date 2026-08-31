@@ -1,0 +1,24 @@
+name: Hygiene
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+    paths:
+      - '**.php'
+      - 'composer.json'
+      - '.php-cs-fixer.dist.php'
+      - '.github/workflows/hygiene.yml'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  hygiene:
+    uses: kodamity/.github/.github/workflows/hygiene.yml@main

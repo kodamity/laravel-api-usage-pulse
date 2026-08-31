@@ -6,6 +6,10 @@ includes:
     - ./phpstan-baseline.neon
 
 parameters:
+    phpVersion:
+        min: 80300
+        max: 80599
+
     parallel:
         processTimeout: 1200.0
 
