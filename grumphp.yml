@@ -32,7 +32,7 @@ grumphp:
       match_word: false
     git_commit_message:
       allow_empty_message: false
-      enforce_capitalized_subject: true
+      enforce_capitalized_subject: false
       enforce_no_subject_punctuations: false
       enforce_no_subject_trailing_period: true
       enforce_single_lined_subject: true
